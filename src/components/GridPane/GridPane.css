@@ -1,0 +1,19 @@
+.grid-item{
+    border-radius: 10px;
+    font-family: "Poetsen One", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255, 1);
+    font-size: x-large;
+}
+
+.grid-container button:disabled {
+    cursor: not-allowed; /* Change cursor to indicate it is not clickable */
+    pointer-events: none; /* Prevent any mouse interactions */
+    opacity: 1; /* Ensure the appearance remains the same */
+    background-color: buttonface;
+    border-color: black;
+    color: black;
+    background: rgb(255, 255, 255, 0.1);
+}

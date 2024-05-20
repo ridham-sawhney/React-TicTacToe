@@ -1,0 +1,78 @@
+.gameOver {
+    background-color: rgb(25 69 71 / 85%);
+    height: 550px;
+    min-width: 400px;
+    max-width: calc(100% - 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10%;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.gameOver h1 {
+    font-family: "Zen Dots", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: yellow;
+}
+
+.gameOver p {
+    margin: 20px;
+    font-family: "Homenaje", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffdb00;
+}
+
+.gameOver button{
+    width: 150px;
+    height: 40px;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.gameOver button::before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 150px;
+    background: linear-gradient(#ffdd00, #ff1100, #ddff00);
+    animation: rotate 3s linear infinite;
+} 
+
+.gameOver button::after{
+    content: 'Restart Game';
+    font-family: "Zen Dots", sans-serif;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 4px;
+    width: 138px;
+    height: 30px;
+    background: black;
+    color: white
+}
+
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
