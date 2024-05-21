@@ -8,7 +8,8 @@ export default function GridPane({currentPlayer,updateCurrentPlayer,gridTurns,up
     }
     return (
         <>
-           { gridTurns.map((rowArray,columnIndex)=>{
+           { 
+           gridTurns.map((rowArray,columnIndex)=>{
                return rowArray.map((arrayElement,rowIndex)=>{
                 return (<button className="grid-item"  key={rowIndex+" "+columnIndex} disabled={gridTurns[rowIndex][columnIndex]!=null} onClick={()=>updateData(rowIndex,columnIndex)}>{gridTurns[rowIndex][columnIndex]}</button>)
                })
