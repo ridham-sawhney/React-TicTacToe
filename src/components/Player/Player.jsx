@@ -18,7 +18,7 @@ export default function Player(props){
         })
     }
     return(<>
-            <div className={(props.currentPlayer == props.symbol) ? 'active PlayerDiv':'PlayerDiv'}>
+            <div onClick={()=>{!isEditting ? updateEditStatus() : ()=>{}}} className={(props.currentPlayer == props.symbol) ? 'active PlayerDiv':'PlayerDiv'}>
                 <div className='PlayerDiv-content'>
                     {
                        isEditting ? <input type="text"  value={playerName} onChange={(evt)=>{setPlayerName(evt.target.value)}}/> : <span>{playerName + ' : ' + props.symbol}</span> 

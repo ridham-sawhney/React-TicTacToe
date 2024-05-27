@@ -1,4 +1,4 @@
-.title{
+.title {
     color: black;
     z-index: 10;
     position: absolute;
@@ -9,66 +9,85 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-  font-weight: 400;
-  font-size: 60px;
-  color: rgb(255,255,255,0.8);
-  font-style: normal;
+    font-weight: 400;
+    font-size: 60px;
+    color: rgb(255, 255, 255, 0.8);
+    font-style: normal;
 }
 
-.title div{
-    color:rgb(255,255,255,0.8);
+.title div {
+    color: rgb(255, 255, 255, 0.8);
     padding-left: 2px;
 }
 
-.title div:nth-child(1){
+.title div:nth-child(1) {
     animation: animate 3s ease-out 1.5;
 }
-.title div:nth-child(2){
+
+.title div:nth-child(2) {
     animation: animate 3s ease-out 1;
 }
-.title div:nth-child(3){
+
+.title div:nth-child(3) {
     animation: animate 3s ease-out 1;
 }
-.title div:nth-child(5){
+
+.title div:nth-child(5) {
     margin-left: 7px;
     animation: animate 3s ease-out 1.5;
 }
-.title div:nth-child(6){
-    animation:animate 3s ease-out 1;
-}
-.title div:nth-child(7){
+
+.title div:nth-child(6) {
     animation: animate 3s ease-out 1;
 }
-.title div:nth-child(9){
+
+.title div:nth-child(7) {
+    animation: animate 3s ease-out 1;
+}
+
+.title div:nth-child(9) {
     margin-left: 7px;
     animation: animate 3s ease-out 1.5;
 }
-.title div:nth-child(10){
+
+.title div:nth-child(10) {
     animation: animate 3s ease-out 1;
 }
-.title div:nth-child(11){
+
+.title div:nth-child(11) {
     animation: animate 3s ease-out 1;
 }
 
 @keyframes animate {
-    0%{
+    0% {
         margin-top: 8px;
         opacity: 0;
-        color:#111
+        color: #111
     }
-    50%{
+
+    50% {
         margin-top: -8px;
         opacity: 1;
-        
+
     }
-    75%{
+
+    75% {
         margin-top: 8px;
         opacity: 0;
-        color:#111;
+        color: #111;
     }
-    100%{
+
+    100% {
         margin-top: -8px;
         opacity: 1;
-       
+
     }
+}
+
+
+@media screen and (max-width:600px) {
+    .title {
+        font-size: 40px;
+    }
+
 }
