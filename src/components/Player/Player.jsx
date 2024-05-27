@@ -24,7 +24,7 @@ export default function Player(props){
                        isEditting ? <input type="text"  value={playerName} onChange={(evt)=>{setPlayerName(evt.target.value)}}/> : <span>{playerName + ' : ' + props.symbol}</span> 
                     }
                     
-                    <button className='PlayerButton' onClick={updateEditStatus}><span className={isEditting ? "material-symbols-outlined blink":"material-symbols-outlined"}>{isEditting ? 'save': 'edit'}</span></button>
+                    <button className='PlayerButton' onClick={(event)=>{event.stopPropagation() ; updateEditStatus()}}><span className={isEditting ? "material-symbols-outlined blink":"material-symbols-outlined"}>{isEditting ? 'save': 'edit'}</span></button>
                 </div>
             </div>
     </>)
