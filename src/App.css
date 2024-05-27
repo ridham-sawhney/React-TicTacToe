@@ -52,5 +52,8 @@
 @media screen and (max-width:600px) {
     .Players{
         flex-direction: column;
+        .PlayerDiv{
+            width: 50%;
+        }
     }
 }

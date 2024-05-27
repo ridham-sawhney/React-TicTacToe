@@ -8,6 +8,9 @@
     background: rgb(255, 255, 255, 0.6);
     font-family: "Poetsen One", sans-serif;
     margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .PlayerDiv-content{
@@ -16,7 +19,7 @@
     font-size: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .PlayerDiv-content span{
