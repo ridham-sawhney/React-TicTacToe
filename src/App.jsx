@@ -1,4 +1,4 @@
-import { useState ,useRef } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import Player from "./components/Player/Player";
 import GridPane from './components/GridPane/GridPane';
@@ -18,7 +18,7 @@ function App() {
   const [gameMode, setGameMode] = useState('AI');
   const [currentPlayer, setCurrentPlayer] = useState('O');
   const [logEntries, updateLogEntries] = useState([]);
-  var buttonReference = useRef([[],[],[]]);
+  var buttonReference = useRef([[], [], []]);
 
   function updateGameMode(mode) {
     setGameMode(mode);
@@ -27,11 +27,13 @@ function App() {
   function updateCurrentPlayer() {
     if (currentPlayer == 'O') {
       setCurrentPlayer('X');
-      if(gameMode=="AI"){
+      if (gameMode == "AI") {
         setTimeout(() => {
           var turn = BestMoveProvider([...gridTurns.map((innerArray => [...innerArray]))]);
-          if(turn.i!=-1 && turn.j!=-1){
-            buttonReference.current[turn.i][turn.j].click();
+          if (turn.i != -1 && turn.j != -1) {
+            updateGrid(turn.i,turn.j,'X');
+            setCurrentPlayer('O');
+            // buttonReference.current[turn.i][turn.j].click();
           }
           console.log(turn);
         }, 500);
@@ -45,7 +47,7 @@ function App() {
     'O': 'Player1',
     'X': 'Ridham'
   });
- 
+
   const [gridTurns, setGridTurns] = useState([...grid.map((innerArray => [...innerArray]))]);
   function updateGrid(row, column, symbol) {
     setGridTurns((prevGridTurns) => {
@@ -57,7 +59,19 @@ function App() {
   function resetGame() {
     isDraw = false;
     updateLogEntries([]);
-    setCurrentPlayer('O');
+    if (gameMode != 'AI') {
+      setCurrentPlayer('O');
+    } else {
+      if (currentPlayer == 'X') {
+        var turn = BestMoveProvider([...grid.map((innerArray => [...innerArray]))]);
+        if (turn.i != -1 && turn.j != -1) {
+          setTimeout(() => {
+            updateGrid(turn.i,turn.j,'X');
+            setCurrentPlayer('O');
+          }, 1500);
+        }
+      }
+    }
     setGridTurns(() => [...grid.map((innerArray => [...innerArray]))]);
   }
 
@@ -77,14 +91,14 @@ function App() {
   return (
     <>
       <div className='gameContainer'>
-        <GameMode gameMode={gameMode} updateGameMode={updateGameMode}/>
+        <GameMode gameMode={gameMode} updateGameMode={updateGameMode} />
         <div className='Players'>
           <Player symbol={'O'} currentPlayer={currentPlayer} playerNames={playerNames} setPlayerNames={setPlayerNames} />
           <Player symbol={'X'} gameMode={gameMode} currentPlayer={currentPlayer} playerNames={playerNames} setPlayerNames={setPlayerNames} />
         </div>
 
         <div className='grid-container'>
-          <GridPane buttonReference={buttonReference} currentPlayer={currentPlayer} updateCurrentPlayer={updateCurrentPlayer} gridTurns={gridTurns} updateGrid={updateGrid} />
+          <GridPane gameMode={gameMode} buttonReference={buttonReference} currentPlayer={currentPlayer} updateCurrentPlayer={updateCurrentPlayer} gridTurns={gridTurns} updateGrid={updateGrid} />
         </div>
       </div>
       {(winner || isDraw) && <GameOver winner={winner} gameMode={gameMode} playerNames={playerNames} resetGame={resetGame} />}
