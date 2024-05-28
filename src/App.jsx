@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState ,useRef } from 'react'
 import './App.css'
 import Player from "./components/Player/Player";
 import GridPane from './components/GridPane/GridPane';
 import { winningScenarios } from './Data/WinningScenarios';
 import GameOver from './components/GameOver/GameOver';
-
-
+import GameMode from './components/GameMode/GameMode';
+import BestMoveProvider from './Utils/BestMoveProvider';
 const grid = [
   [null, null, null],
   [null, null, null],
@@ -15,11 +15,27 @@ const grid = [
 function App() {
   let winner = null;
   let isDraw = false;
+  const [gameMode, setGameMode] = useState('AI');
   const [currentPlayer, setCurrentPlayer] = useState('O');
   const [logEntries, updateLogEntries] = useState([]);
+  var buttonReference = useRef([[],[],[]]);
+
+  function updateGameMode(mode) {
+    setGameMode(mode);
+    resetGame();
+  }
   function updateCurrentPlayer() {
     if (currentPlayer == 'O') {
       setCurrentPlayer('X');
+      if(gameMode=="AI"){
+        setTimeout(() => {
+          var turn = BestMoveProvider([...gridTurns.map((innerArray => [...innerArray]))]);
+          if(turn.i!=-1 && turn.j!=-1){
+            buttonReference.current[turn.i][turn.j].click();
+          }
+          console.log(turn);
+        }, 500);
+      }
     }
     else {
       setCurrentPlayer('O');
@@ -27,8 +43,9 @@ function App() {
   }
   const [playerNames, setPlayerNames] = useState({
     'O': 'Player1',
-    'X': 'Player2'
-  })
+    'X': 'Ridham'
+  });
+ 
   const [gridTurns, setGridTurns] = useState([...grid.map((innerArray => [...innerArray]))]);
   function updateGrid(row, column, symbol) {
     setGridTurns((prevGridTurns) => {
@@ -40,7 +57,8 @@ function App() {
   function resetGame() {
     isDraw = false;
     updateLogEntries([]);
-    setGridTurns((gridTurns) => [...grid.map((innerArray => [...innerArray]))]);
+    setCurrentPlayer('O');
+    setGridTurns(() => [...grid.map((innerArray => [...innerArray]))]);
   }
 
   winningScenarios.forEach((scenario) => {
@@ -59,16 +77,17 @@ function App() {
   return (
     <>
       <div className='gameContainer'>
+        <GameMode gameMode={gameMode} updateGameMode={updateGameMode}/>
         <div className='Players'>
           <Player symbol={'O'} currentPlayer={currentPlayer} playerNames={playerNames} setPlayerNames={setPlayerNames} />
-          <Player symbol={'X'} currentPlayer={currentPlayer} playerNames={playerNames} setPlayerNames={setPlayerNames} />
+          <Player symbol={'X'} gameMode={gameMode} currentPlayer={currentPlayer} playerNames={playerNames} setPlayerNames={setPlayerNames} />
         </div>
 
         <div className='grid-container'>
-          <GridPane currentPlayer={currentPlayer} updateCurrentPlayer={updateCurrentPlayer} gridTurns={gridTurns} updateGrid={updateGrid} />
+          <GridPane buttonReference={buttonReference} currentPlayer={currentPlayer} updateCurrentPlayer={updateCurrentPlayer} gridTurns={gridTurns} updateGrid={updateGrid} />
         </div>
       </div>
-      {(winner || isDraw) && <GameOver winner={winner} playerNames={playerNames} resetGame={resetGame} />}
+      {(winner || isDraw) && <GameOver winner={winner} gameMode={gameMode} playerNames={playerNames} resetGame={resetGame} />}
     </>
   )
 }

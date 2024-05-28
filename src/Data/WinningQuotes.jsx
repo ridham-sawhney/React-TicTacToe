@@ -10,4 +10,5 @@ export const WinningQuotes = [
     "Way to go,Player !  Your strategy was flawless!",
     "Awesome win,Player !  You've claimed the Tic Tac Toe crown!",
     "Kudos,Player !  Your Tic Tac Toe skills are unbeatable!",
+    "Congratulations! You managed to lose to a bunch of algorithms. Impressive!"
 ]

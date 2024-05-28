@@ -21,11 +21,14 @@ export default function Player(props){
             <div onDoubleClick={()=>{!isEditting ? updateEditStatus() : ()=>{}}} className={(props.currentPlayer == props.symbol) ? 'active PlayerDiv':'PlayerDiv'}>
                 <div className='PlayerDiv-content'>
                     {
-                       isEditting ? <input type="text"  value={playerName} onChange={(evt)=>{setPlayerName(evt.target.value)}}/> : <span>{playerName + ' : ' + props.symbol}</span> 
+                       isEditting&&props.gameMode!="AI" ? <input  type="text"  value={playerName} onChange={(evt)=>{setPlayerName(evt.target.value)}}/> : <span>{playerName + ' : ' + props.symbol}</span> 
                     }
-                    
-                    <button className='PlayerButton' onClick={(event)=>{event.stopPropagation() ; updateEditStatus()}}><span className={isEditting ? "material-symbols-outlined blink":"material-symbols-outlined"}>{isEditting ? 'save': 'edit'}</span></button>
-                </div>
+                    {
+                    <button style={{
+                        visibility: props.gameMode =="AI" ? 'hidden':''
+                    }} className='PlayerButton' onClick={(event)=>{event.stopPropagation() ; updateEditStatus()}}><span className={isEditting ? "material-symbols-outlined blink":"material-symbols-outlined"}>{isEditting ? 'save': 'edit'}</span></button>
+                    }
+                    </div>
             </div>
     </>)
 } 

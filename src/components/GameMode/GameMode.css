@@ -1,0 +1,46 @@
+
+.gameMode{
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gameMode-button {
+    width: 80px;
+    overflow: hidden;
+    height: 40px;
+}
+
+
+.gameMode-button img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.gameMode-button {
+    /* padding: 10px 10px; */
+    font-size: 16px;
+    border: 2px solid #a8c7fa ;
+    background-color: transparent;
+    color: rgb(5 0 255);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .gameMode-button:first-of-type {
+    border-radius: 20px 0 0 20px;
+  }
+  
+  .gameMode-button:last-of-type {
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .gameMode-button.active {
+    background-color: rgb(164 88 235 / 58%);
+    color: white;
+  }
+  
+  .gameMode-button:not(:last-of-type) {
+    border-right: none;
+  }

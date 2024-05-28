@@ -2,10 +2,13 @@ import {usestate} from 'react';
 import './GameOver.css'
 import { WinningQuotes } from '../../Data/WinningQuotes';
 
-export default function GameOver({winner,playerNames,resetGame}){
+export default function GameOver({gameMode,winner,playerNames,resetGame}){
     
     function getRandomInt(){
-        return Math.floor(Math.random() *(WinningQuotes.length-1))
+        if(gameMode=="AI" && winner=="X"){
+            return WinningQuotes.length-1
+        }
+        return Math.floor(Math.random() *(WinningQuotes.length-2))
     }
     return(<>
         <div className='gameOver'>
