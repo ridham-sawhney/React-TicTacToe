@@ -14,8 +14,6 @@
 }
 
 .PlayerDiv-content{
-    width: 125px;
-    max-width: 130px;
     font-size: 15px;
     display: flex;
     align-items: center;
