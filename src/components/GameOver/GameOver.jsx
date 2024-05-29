@@ -16,7 +16,7 @@ export default function GameOver({gameMode,winner,playerNames,resetGame}){
             {
                 winner ?
                 <p>{WinningQuotes[getRandomInt()].replace('Player',playerNames[winner])}</p>
-                : <p>"Match Draw !"{winner && gameMode =="AI" ? "":" Count it as your win , You can't beat me."}</p>
+                : <p>"Match Draw !"{(!winner && gameMode =="AI") ? " Count it as your win , You can't beat me.":""}</p>
             }
             <button onClick={resetGame}>Restart Game</button>
         </div>
