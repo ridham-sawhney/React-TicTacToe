@@ -68,7 +68,7 @@ function App() {
           setTimeout(() => {
             updateGrid(turn.i,turn.j,'X');
             setCurrentPlayer('O');
-          }, 1500);
+          }, 500);
         }
       }
     }
